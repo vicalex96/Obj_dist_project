@@ -1,0 +1,56 @@
+<aplication>
+    <phones>
+        <phone><id>5</id><nombre>string</nombre><marca>string</marca><fecha_estreno>2022-01-04 17:27:02.466000+00:00</fecha_estreno><ancho_cm>0</ancho_cm><alto_cm>0</alto_cm><memoria_gb>0</memoria_gb><ram_gb>0</ram_gb><descripcion>string</descripcion><fecha_registro>2022-01-04 13:27:04.130326</fecha_registro><publicado>True</publicado></phone><phone>
+            <id>4</id>
+            <nombre>string</nombre>
+            <marca>string</marca>
+            <fecha_estreno>2022-01-04 17:23:18.013000+00:00</fecha_estreno>
+            <ancho_cm>0</ancho_cm>
+            <alto_cm>0</alto_cm>
+            <memoria_gb>0</memoria_gb>
+            <ram_gb>0</ram_gb>
+            <descripcion>string</descripcion>
+            <fecha_registro>2022-01-04 13:26:30.489452</fecha_registro>
+            <publicado>True</publicado>
+        </phone>
+        <phone>
+            <id>3</id>
+            <nombre>string</nombre>
+            <marca>string</marca>
+            <fecha_estreno>2022-01-04 17:23:18.013000+00:00</fecha_estreno>
+            <ancho_cm>0</ancho_cm>
+            <alto_cm>0</alto_cm>
+            <memoria_gb>0</memoria_gb>
+            <ram_gb>0</ram_gb>
+            <descripcion>string</descripcion>
+            <fecha_registro>2022-01-04 13:26:08.109412</fecha_registro>
+            <publicado>True</publicado>
+        </phone>
+        <phone>
+            <id>2</id>
+            <nombre>string</nombre>
+            <marca>string</marca>
+            <fecha_estreno>2022-01-04 17:23:18.013000+00:00</fecha_estreno>
+            <ancho_cm>0</ancho_cm>
+            <alto_cm>0</alto_cm>
+            <memoria_gb>0</memoria_gb>
+            <ram_gb>0</ram_gb>
+            <descripcion>string</descripcion>
+            <fecha_registro>2022-01-04 13:25:52.564268</fecha_registro>
+            <publicado>True</publicado>
+        </phone>
+        <phone>
+            <id>0</id>
+            <nombre>string</nombre>
+            <marca>string</marca>
+            <fecha_estreno>2022-01-04 17:23:18.013000+00:00</fecha_estreno>
+            <ancho_cm>0</ancho_cm>
+            <alto_cm>0</alto_cm>
+            <memoria_gb>0</memoria_gb>
+            <ram_gb>0</ram_gb>
+            <descripcion>string</descripcion>
+            <fecha_registro>2022-01-04 13:25:47.456095</fecha_registro>
+            <publicado>True</publicado>
+        </phone>
+    </phones>
+</aplication>
