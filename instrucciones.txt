@@ -1,0 +1,20 @@
+Para ejecutar el Rest API:
+  1. Ir a la raiz del proyecto en el terminar y escribir el comando:
+	$python -m venv venv 
+	(eso creara un ambiente virtual)
+  2. Iniciar el ambiente virtual, todavia estando en la carpeta del proyecto vamos ejecutamos:
+	$cd ./venv/Scripts
+	$activate
+	(esto activa el ambiente virtual, se puede ver antes de la ruta "(venv)" en la terminal)
+  3. Instalar las dependencias:
+	$pip install -r requeriments.txt
+  4. Ejecutar el entorno:
+	$uvicorn main:app --reload
+  5.(En caso de que de error al iniciar el proyecto) tendran que instalar las dependencias de esta forma:
+	$pip install --upgrade pip
+	$pip install fastapi[all]
+  6. Una vez iniciado uvicorn, en la pagina web puede ir a la ruta localhost:8000/docs
+	(aqui deberian de ver todos los endpoints CRUD que tiene la Restapi registrados y los pueden probar de una forma grafica)
+  
+  7. Los otros elementos del proyecto, el Coordinador y los 2 servidores de replicacion deben 
+  ser elementos indenpendientes a la parte de Rest api, por lo cual se tienen que ejecutar en terminales diferentes
