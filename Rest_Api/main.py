@@ -18,4 +18,6 @@ def get_application():
     app.include_router(blog_router, prefix="/api")
     return app
 app = get_application()
+
+
      

@@ -56,24 +56,64 @@ class PhoneRepo:
         phonexml.append(phone_dict)
         return PhoneInXML(**phonexml[-1]) # el ** fuerza a que la clase PhoneInXML obtenga sus valores de los equivalentes en el diccionario
     
-    
-    
-    def get_all_phones(self) -> List[PhoneInXML]:
+    def get_phone(self, *,id:int = None, name:str = None) -> PhoneInXML:
+        phone_dict = {
+            "nombre": "",
+            "marca": "",
+            "fecha_estreno": "",
+            "ancho_cm": 0,
+             "alto_cm": 0,
+            "memoria_gb": 0,
+            "ram_gb": 0,
+             "descripcion": ""
+        }
         
-        return phonexml
-    
-    def delete_phone_by_id(self, id: int):
+        if(id != None and name != None ):
+            raise Exception("get_phone: ambos argumentos no pueden contener informacion")
+        if(id == None and name == None ):
+            raise Exception("get_phone: algun argumento tiene que tener un valor asignado")
+        
         tr = et.parse(xml_file_name)
         for element in tr.iter():
             for subelement in element:
-                if(subelement.tag == 'phone' and int(subelement.find('id').text) == id):
-                    element.remove(subelement)
-                    tr.write(xml_file_name)
-                    return id
+                if(subelement.tag == 'phone'):
+                    
+                    if(int(subelement.find('id').text) == id or
+                       str(subelement.find('nombre').text) == name ):
+                        
+                        print("objeto encontrado id:",subelement.find('id').text)
+                        phone_dict['id'] = subelement.find('id').text
+                        phone_dict['nombre'] = subelement.find('nombre').text
+                        phone_dict['fecha_estreno'] = subelement.find('fecha_estreno').text
+                        phone_dict['ancho_cm'] = subelement.find('ancho_cm').text
+                        phone_dict['alto_cm'] = subelement.find('alto_cm').text
+                        phone_dict['memoria_gb'] = subelement.find('memoria_gb').text
+                        phone_dict['ram_gb'] = subelement.find('ram_gb').text
+                        phone_dict['descripcion'] = subelement.find('descripcion').text
+                        phone_dict['fecha_registro'] = subelement.find('fecha_registro').text
+                        phone_dict['publicado'] = subelement.find('publicado').text
+                        return PhoneInXML(**phone_dict)
         return None
-
-    def delete_phone_by_name(self, nombre: str):
-
-        return 1
+        
+    
+    def get_all_phones(self) -> List[PhoneInXML]:
+        return phonexml
+    
+    def delete_phone(self, *, id:int = None, name:str = None) -> int:
+        if(id != None and name != None ):
+            raise Exception("delete_phone: ambos argumentos no pueden contener informacion")
+        if(id == None and name == None ):
+            raise Exception("delete_phone: algun argumento tiene que tener un valor asignado")
+        
+        tr = et.parse(xml_file_name)
+        for element in tr.iter():
+            for subelement in element:
+                if(subelement.tag == 'phone'):
+                    if( int(subelement.find('id').text) == id or
+                        str(subelement.find('nombre').text) == name ):
+                        element.remove(subelement)
+                        tr.write(xml_file_name)
+                        return int(subelement.find('id').text)
+        return None
         
     

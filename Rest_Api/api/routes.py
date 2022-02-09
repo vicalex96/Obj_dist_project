@@ -1,61 +1,70 @@
+from typing import  List
 from fastapi import APIRouter, Body, status,HTTPException
 
-from model.xml_model import PhoneCreate, PhoneInXML
-from repository.phones_xml import PhoneRepo
+from model.xml_model import MOBmodel, MOBBase
+from repository.repo_mob import MOBRepo
 router = APIRouter()
 
-""" class PhoneCreate(BaseModel):
-    id: int
-    nombre: str
-    marca: Optional[str]
-    fecha_estreno: Optional[datetime]
-    ancho_cm: Optional[int]
-    alto_cm: Optional[int]
-    memoria_gb: Optional[int]
-    ram_gb: Optional[int]
-    descripcion: Optional[Text]  
+@router.post("/create",response_model= MOBmodel, status_code= status.HTTP_201_CREATED)
+def create_phone( new_obj: MOBBase)-> MOBmodel:
+    """ Permite un objeto
+    **Returns**:
+    - **JSON**: el objeto creado
+    """
+    mob_repo = MOBRepo()
+    return mob_repo.create_obj(new_obj = new_obj)
     
-    PhoneRepo: la clase que contine los formatos
-    PhoneCreate: el formato para crear informacion de telefono
-    PhoneInXML: el formato para almacenar el telefono en el XML
-"""
-@router.post("/",response_model= PhoneInXML, status_code= status.HTTP_201_CREATED)
-def create_phone( new_phone: PhoneCreate)-> PhoneInXML:
-    phone_repo = PhoneRepo()
-    return phone_repo.create_phone(new_phone = new_phone)
-    
-@router.delete("/{id}/")
-def delete_phone_by_id(id: int) -> int:
-    print('hola')
-    phone_repo = PhoneRepo()
-    delete_id: int = phone_repo.delete_phone_by_id(id= id)
-    if not delete_id:
-        print('error')
+@router.delete("/delete/{name}/",status_code=status.HTTP_200_OK)
+def delete_phone_by_name(name: str) -> str:
+    """ Elimina el objeto indicado del xml
+    **Returns**:
+    - **str**: status de culminacion
+    """
+    mob_repo = MOBRepo()
+    deleted_obj: int = mob_repo.delete_obj(name = name)
+    if not deleted_obj:
         raise HTTPException(status_code= status.HTTP_404_NOT_FOUND)
-    print('respuesta')
-    return delete_id
+    return " elimiando el objeto de id: " + str(deleted_obj)
 
-@router.delete("/{nombre}/")
-def delete_phone_by_name(nombre: str) -> id:
-    phone_repo = PhoneRepo()
-    delete_id: int = phone_repo.delete_phone_by_name(nombre = nombre)
-    if not delete_id:
+@router.get("/consult/data/{name}/",response_model= MOBmodel, status_code= status.HTTP_200_OK)
+def get_data_phone(name:str) -> MOBmodel:
+    """ Permite obtener la informacion de un objeto según su nombre
+    **Returns**:
+    - **JSON**: objeto objeto objetnido
+    """
+    mob_repo = MOBRepo()
+    obj = mob_repo.get_obj(name = name)
+    if not obj:
         raise HTTPException(status_code= status.HTTP_404_NOT_FOUND)
-    return delete_id
+    return obj
 
-@router.get("/data")
-def get_data_phone():
-    phone_repo = PhoneRepo()
-    return phone_repo.get_all_phones()
-
-@router.get("/estructure")
-def delete_estructure_phone():
-    return "este endpintpermite crear un blog"
+@router.get("/consult/estructure",response_model= List[MOBmodel], status_code= status.HTTP_200_OK)
+def get_structure_xml():
+    """ Endpoint que para pedir la estructura del objeto en XML
+    **Returns**:
+    - **json**: informacion de la estructura del objeto
+    """
+    mob_repo = MOBRepo()
+    objects = mob_repo.get_all_objs()
+    if not objects:
+        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND)
+    return objects
 
 @router.post("/replicate")
 def replicate_XML():
-    return "este endpintpermite crear un blog"
+    """Solicita la replicación del xml
+    **Returns**:
+    - **str**: mensaje de status de la replicación 
+    """
+    pass
 
-@router.post("/retore")
+@router.post("/restore")
 def restore_XML():
-    return "este endpintpermite crear un blog"
+    """
+    Solicita los datos de XML de la ultima replica
+
+    **Returns**:
+    
+    - **str**: mensaje de status de rescuperacion del xml
+    """
+    pass

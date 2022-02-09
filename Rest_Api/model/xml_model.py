@@ -2,17 +2,6 @@ from datetime import datetime
 from typing import Optional, Text
 from pydantic import BaseModel
 
-
-class ObjectBase(BaseModel):
-    nombre: Optional[str]
-    marca: Optional[str]
-    fecha_estreno: Optional[datetime]
-    ancho_cm: Optional[int]
-    alto_cm: Optional[int]
-    memoria_gb: Optional[int]
-    ram_gb: Optional[int]
-    descripcion: Optional[Text]
-
 class PhoneCreate(BaseModel):
     nombre: str
     marca: Optional[str]
@@ -36,8 +25,16 @@ class PhoneInXML(BaseModel):
     fecha_registro: datetime
     publicado: bool
    
-# para comunicacion con el sistema de replicacion    
-class ReplicaObjAction(BaseModel):
+  
+  
+class MOBBase(BaseModel):
     fecha_creacion: datetime
     nombre: str
-    accion: str
+    
+class MOBmodel(MOBBase):
+    accion: Optional[str]
+
+
+    
+
+    

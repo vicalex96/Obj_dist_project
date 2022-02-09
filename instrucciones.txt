@@ -1,7 +1,7 @@
 Para ejecutar el Rest API:
-  1. Ir a la raiz del proyecto en el terminar y escribir el comando:
+  1. Ir a la raiz del Rest_API en el terminar y escribir el comando:
 	$python -m venv venv 
-	(eso creara un ambiente virtual)
+	(esto creara un ambiente virtual)
   2. Iniciar el ambiente virtual, todavia estando en la carpeta del proyecto vamos ejecutamos:
 	$cd ./venv/Scripts
 	$activate
