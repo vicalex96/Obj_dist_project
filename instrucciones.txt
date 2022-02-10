@@ -18,3 +18,11 @@ Para ejecutar el Rest API:
   
   7. Los otros elementos del proyecto, el Coordinador y los 2 servidores de replicacion deben 
   ser elementos indenpendientes a la parte de Rest api, por lo cual se tienen que ejecutar en terminales diferentes
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Para ejecutar la parte de servidores y el coordinador de replicas:
