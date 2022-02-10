@@ -4,8 +4,10 @@ import random
 import socket
 from os.path import exists
 
-IP = "192.168.1.100"
-PORT = 8002
+# IP = "127.0.0.1" ip de refernecia, no se usa en el codigo de este servidor, pero lo usa para que se usa para que se conecten a el
+# PORT = 8002  puerto de referencia, no se usa en el codigo de este servidor, pero lo usa para que se usa para que se conecten a el     
+
+# necesario para enviar el xml al coordinador 
 IP_Pyro4 = "192.168.1.100"
 PORT_Pyro4 = 8001
 

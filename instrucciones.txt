@@ -28,7 +28,8 @@
 	8. para que funcione pyro (el rmi de python) que se ejecuta en el coordinador es necesario iniciar:
 		$pyro4-ns --hots="direccion ip" --port="puerto"
 
-	9. En los servidores hay un par de variables IP y PORT en donde se debe colocar las direcciones del servidor destino, es importante que los cambien antes de llamar
+	9. En los servidores hay un par de variables IP y PORT en donde se debe colocar las direcciones del servidor destino, es importante que los cambien antes de iniciarlos, coloquen su IP de internet ( en el programa de NOIP que se menciona despues pueden ver el ip)
+
 
 	10. Descarguen el NOIP y abran algunos puertos en su router para el proyecto se usaron:
 		PORT 8000: RESTapi
