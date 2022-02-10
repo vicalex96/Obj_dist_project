@@ -6,7 +6,7 @@ from repository.repo_mob import MOBRepo
 router = APIRouter()
 
 @router.post("/create",response_model= MOBmodel, status_code= status.HTTP_201_CREATED)
-def create_phone( new_obj: MOBBase)-> MOBmodel:
+def create( new_obj: MOBBase)-> MOBmodel:
     """ Permite un objeto
     **Returns**:
     - **JSON**: el objeto creado
@@ -15,7 +15,7 @@ def create_phone( new_obj: MOBBase)-> MOBmodel:
     return mob_repo.create_obj(new_obj = new_obj)
     
 @router.delete("/delete/{name}/",status_code=status.HTTP_200_OK)
-def delete_phone_by_name(name: str) -> str:
+def delete(name: str) -> str:
     """ Elimina el objeto indicado del xml
     **Returns**:
     - **str**: status de culminacion
@@ -27,7 +27,7 @@ def delete_phone_by_name(name: str) -> str:
     return " elimiando el objeto de id: " + str(deleted_obj)
 
 @router.get("/consult/data/{name}/",response_model= MOBmodel, status_code= status.HTTP_200_OK)
-def get_data_phone(name:str) -> MOBmodel:
+def get_data(name:str) -> MOBmodel:
     """ Permite obtener la informacion de un objeto según su nombre
     **Returns**:
     - **JSON**: objeto objeto objetnido
@@ -39,7 +39,7 @@ def get_data_phone(name:str) -> MOBmodel:
     return obj
 
 @router.get("/consult/estructure",response_model= List[MOBmodel], status_code= status.HTTP_200_OK)
-def get_structure_xml():
+def get_structure():
     """ Endpoint que para pedir la estructura del objeto en XML
     **Returns**:
     - **json**: informacion de la estructura del objeto
@@ -50,16 +50,20 @@ def get_structure_xml():
         raise HTTPException(status_code= status.HTTP_404_NOT_FOUND)
     return objects
 
-@router.post("/replicate")
-def replicate_XML():
+@router.post("/replicate", response_model = MOBmodel, status_code= status.HTTP_200_OK)
+def replicate():
     """Solicita la replicación del xml
     **Returns**:
     - **str**: mensaje de status de la replicación 
     """
-    pass
+    mob_repo = MOBRepo()
+    resp =  mob_repo.replicate_xml()
+    if not resp or resp.accion == "abort" or resp.accion == "error":
+        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND)
+    return resp
 
-@router.post("/restore")
-def restore_XML():
+@router.post("/restore", response_model = MOBmodel, status_code= status.HTTP_200_OK)
+def restore():
     """
     Solicita los datos de XML de la ultima replica
 
@@ -67,4 +71,9 @@ def restore_XML():
     
     - **str**: mensaje de status de rescuperacion del xml
     """
-    pass
+    mob_repo = MOBRepo()
+    resp =  mob_repo.restore_xml()
+    print(resp)
+    if not resp or resp.accion == "abort" or resp.accion == "error":
+        raise HTTPException(status_code= status.HTTP_404_NOT_FOUND)
+    return resp

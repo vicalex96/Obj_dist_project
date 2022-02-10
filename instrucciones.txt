@@ -1,20 +1,37 @@
-Para ejecutar el Rest API:
-  1. Ir a la raiz del Rest_API en el terminar y escribir el comando:
+
+ 	1. Ir a la raiz del Proyecto (en donde estan las carpetas de todos los servidores) ir al terminar y escribir el comando:
 	$python -m venv venv 
 	(esto creara un ambiente virtual)
-  2. Iniciar el ambiente virtual, todavia estando en la carpeta del proyecto vamos ejecutamos:
+	NOta: antes de ejecutar cualquier cosa en los terminarles, estar seguro que la virtualizacion esta activa esta indicado con (venv) antes de mostrar la ruta en el terminal
+
+  	2. Iniciar el ambiente virtual, todavia estando en la carpeta del proyecto vamos ejecutamos:
 	$cd ./venv/Scripts
 	$activate
 	(esto activa el ambiente virtual, se puede ver antes de la ruta "(venv)" en la terminal)
-  3. Instalar las dependencias:
-	$pip install -r requeriments.txt
-  4. Ejecutar el entorno:
-	$uvicorn main:app --reload
-  5.(En caso de que de error al iniciar el proyecto) tendran que instalar las dependencias de esta forma:
-	$pip install --upgrade pip
-	$pip install fastapi[all]
-  6. Una vez iniciado uvicorn, en la pagina web puede ir a la ruta localhost:8000/docs
-	(aqui deberian de ver todos los endpoints CRUD que tiene la Restapi registrados y los pueden probar de una forma grafica)
+
+  	3. Instalar las dependencias:
+		$pip install -r requeriments.txt (se actualizo con un par de librerias para Pyro)
+  	
+	4. Ejecutar el entorno:
+		$uvicorn main:app --reload
+  	
+	5.(En caso de que de error al iniciar el proyecto) tendran que instalar las dependencias de esta forma:
+		$pip install --upgrade pip
+		$pip install fastapi[all]
+  	
+	6. Una vez iniciado uvicorn, en la pagina web puede ir a la ruta localhost:8000/docs
+		(aqui deberian de ver todos los endpoints CRUD que tiene la Restapi registrados y los pueden probar de una forma grafica)
   
-  7. Los otros elementos del proyecto, el Coordinador y los 2 servidores de replicacion deben 
-  ser elementos indenpendientes a la parte de Rest api, por lo cual se tienen que ejecutar en terminales diferentes
+  	7. Los otros elementos del proyecto, el Coordinador y los 2 servidores de replicacion deben 
+  	ser elementos indenpendientes a la parte de Rest api, por lo cual se tienen que ejecutar en terminales diferentes
+
+	8. para que funcione pyro (el rmi de python) que se ejecuta en el coordinador es necesario iniciar:
+		$pyro4-ns --hots="direccion ip" --port="puerto"
+
+	9. En los servidores hay un par de variables IP y PORT en donde se debe colocar las direcciones del servidor destino, es importante que los cambien antes de llamar
+
+	10. Descarguen el NOIP y abran algunos puertos en su router para el proyecto se usaron:
+		PORT 8000: RESTapi
+		PORT 8001: Pyro-ns (se peude decir que tambien para el coordinador)
+		PORT 8002: Servidor de replica 1
+		PORT 8003: Servidor de replica 2
