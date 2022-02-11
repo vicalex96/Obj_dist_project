@@ -1,3 +1,34 @@
+
+function replicateData(){
+      fetch('http://distributed.ddns.net:8000/api/objects/replicate', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                  'Content-Type': 'application/json'
+            }
+      })
+      .then( Response => Response.json())
+      .then( json => {
+            $('.respuesta-replicate').text(JSON.stringify(json));
+            console.log(json)
+      })
+ };
+
+ function restoreData(){
+      fetch('http://distributed.ddns.net:8000/api/objects/restore', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                  'Content-Type': 'application/json'
+            }
+      })
+      .then( Response => Response.json())
+      .then( json => {
+            $('.respuesta-restore').text(JSON.stringify(json));
+            console.log(json)
+      })
+ };
+
 function getAllData(){
       fetch('http://distributed.ddns.net:8000/api/objects/consult/estructure', {
             method: 'GET',
@@ -98,5 +129,21 @@ document.getElementById('getAllInfo')
       evt.preventDefault();
  
       getAllData();
+
+});
+
+document.getElementById('replicateInfo')
+.addEventListener("click", (evt) => {
+      evt.preventDefault();
+ 
+      replicateData();
+
+});
+
+document.getElementById('restaurarInfo')
+.addEventListener("click", (evt) => {
+      evt.preventDefault();
+ 
+      restoreData();
 
 });

@@ -64,3 +64,23 @@ section h3{
       font-family: 'Roboto', sans-serif;
       font-weight: 500;
 }
+
+.btn-replicate{
+      display: flex;
+      justify-content: space-around;
+}
+.respuesta-btn{
+      display: flex;
+      justify-content: space-around; 
+      margin-top: 1rem; 
+}
+.respuesta-replicate{
+      padding: .5rem;
+      border: 1px solid rgba(0,0,0,.3);
+}
+
+
+.respuesta-restore{
+      padding: .5rem;
+      border: 1px solid rgba(0,0,0,.3);
+}
