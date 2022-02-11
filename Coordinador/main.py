@@ -5,11 +5,17 @@ from threading import Lock, Thread
 import time
 from random import choice
 from os import remove
-global IP_S1, PORT_S1, IP_S2, PORT_S2 
-IP_S1 = "192.168.1.100"
+
+global IP_S1, PORT_S1, IP_S2, PORT_S2, IP_coordinador, PORT_coordinador
+IP_coordinador = "localhost" # este se puede quedar asi
+PORT_coordinador = 8001
+
+IP_S1 = "192.168.1.100" #IP del servidor de replicacion, si es coloca colocar localhost o IP de la maquina
 PORT_S1 = 8002
-IP_S2 = "192.168.1.100"
+IP_S2 = "192.168.1.100" #IP del servidor de replicacion, si es coloca colocar localhost o IP de la maquina
 PORT_S2 = 8003
+
+
 mutex = Lock()
 
 @Pyro4.expose
@@ -65,45 +71,49 @@ class Coordinador(object):
             return response
 
     def restaurar_objetos(self):
-        print("Vamos a restaurar el objeto", self.__accion)
+        print("Vamos a restaurar el objeto")
         file_data = None
         try:
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             op1 = (IP_S1, PORT_S1)
             op2 = (IP_S2, PORT_S2)
             op_choosed = choice((op1, op2))
+            print(op_choosed)
             client.connect(op_choosed)
             client.send('RESTORE_DATA'.encode('utf-8'))
-            mesage = client.recv(1024).decode('utf-8')
-            if(mesage == 'sent'):
-                file = open('obj_data.xml','r')
-                file_data = file.read(1024)
-                file.close()
-            else:  
-                raise Exception("En el proceso de recuperacion del archivo xml")
+            file_data = self.recibir_objetos(client)
             
         except Exception as err:
             print(" ❌ Error: ocurrio un error", err)
-        client.close   
-        remove('obj_data.xml')
-        return file_data
+        finally:
+            client.close 
+            return file_data
         
     
-    def recibir_objetos(self, file_data):
+    def recibir_objetos(self, client):
+        file_data = None
         try:
-            file = open('obj_data.xml','wb')
-            file.write(file_data.encode('utf-8'))
-            file.close()
-            return "sent"
+            file_data = client.recv(1024).decode('utf-8')   
+            if(file_data):
+                print("data recibida")
+                client.send('OK'.encode('utf-8'))
+                
+            else:
+                print("no se encontró la data")
+                client.send('fail'.encode('utf-8'))
+                client.close 
+                
         except Exception as err:
             print("❌ Error: ocurrio un error al recibir el archivo", err)
-            return "error"
+        finally:
+            return file_data
+        
         
     
 
 
 if(__name__ == "__main__"):  
-    daemon = Pyro4.Daemon(host="127.0.0.1",port=8001)
+    daemon = Pyro4.Daemon(IP_coordinador,PORT_coordinador)
     uri = daemon.register(Coordinador)
     ns = Pyro4.locateNS()
     ns.register('coordinador',uri)

@@ -20,10 +20,11 @@
                   
                   <section>
                         <p class="buttons-navpills">
-                              <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Crear Objeto</a>
-                              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Eliminar Objeto</button>
-                              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample2">Consultar Objeto</button>
-                              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Ocultar Formulario</button>
+                              <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Crear objeto</a>
+                              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Eliminar objeto</button>
+                              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample2">Consultar objeto</button>
+                              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample2">Consultar todos los objetos</button>
+                              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Ocultar formulario</button>
                             </p>
                             <div class="row">
                                   <!-- CREAR OBJETO -->
@@ -32,16 +33,16 @@
                                   <div class="card card-body">
                                     <form action="">
                                           <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                                <input type="text" class="form-control" id="floatingInput namePost" placeholder="name@example.com">
                                                 <label for="floatingInput">Nombre</label>
                                           </div>
 
                                           <div class="form-floating mb-3">
-                                                <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                                <input type="date" class="form-control" id="floatingInput date" placeholder="name@example.com">
                                                 <label for="floatingInput">Fecha</label>
                                           </div>
 
-                                          <button type="button" class="btn btn-outline-primary">Enviar objeto</button>
+                                          <button type="button" class="btn btn-outline-primary" id="sendInfo">Enviar objeto</button>
                                     </form>
                                   </div>
                                 </div>
@@ -53,11 +54,11 @@
                                   <div class="card card-body">
                                     <form action="">
                                           <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                                <input type="text" class="form-control" id="floatingInput nameDelete" placeholder="name@example.com">
                                                 <label for="floatingInput">Nombre</label>
                                           </div>
 
-                                          <button type="button" class="btn btn-outline-primary">Eliminar objeto</button>
+                                          <button type="button" class="btn btn-outline-primary" id="deleteInfo">Eliminar objeto</button>
                                     </form>
                                   </div>
                                 </div>
@@ -69,11 +70,11 @@
                                       <div class="card card-body">
                                           <form action="">
                                                 <div class="form-floating mb-3">
-                                                      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                                      <input type="text" class="form-control" id="floatingInput nameConsult" placeholder="name@example.com">
                                                       <label for="floatingInput">Nombre</label>
                                                 </div>
 
-                                                <button type="button" class="btn btn-outline-primary">Consultar objeto</button>
+                                                <button type="button" class="btn btn-outline-primary" id="getInfo">Consultar objeto</button>
                                           </form>
                                       </div>
                                     </div>
