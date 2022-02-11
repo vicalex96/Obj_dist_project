@@ -1,0 +1,49 @@
+*{
+      margin: 0;
+      padding: 0;
+}
+body{
+      background: rgb(43,106,43);
+      background: linear-gradient(266deg, rgba(43,106,43,1) 0%, rgba(215,255,0,1) 50%, rgba(32,96,46,1) 100%);
+}
+main{
+      display: block;
+      background: rgb(227,227,227);
+      background: radial-gradient(circle, rgba(240,240,240,1) 0%, rgba(255,255,255,1) 100%);
+      margin: 0 auto;
+      width: 80%;
+      border-radius: 10px;
+      box-shadow: 10px 10px 20px rgba(0,0,0,.3);
+}
+.h1--body{
+      margin-top: 2rem;
+      padding: 2rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+}
+
+section{
+      padding: 2rem;
+}
+
+section h3{
+      margin-top: 2rem;
+      padding: 2rem;
+      text-align: left;
+      font-size: 1.3rem;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+}
+.buttons-navpills{
+      text-align: center;
+}
+.mini-footer{
+      margin-top: 2rem;
+      padding: 2rem;
+      text-align: center;
+      font-size: .7rem;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+}

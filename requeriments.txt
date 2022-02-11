@@ -15,3 +15,5 @@ typing_extensions==4.0.1
 uvicorn==0.16.0
 watchgod==0.7
 websockets==10.1
+Pyro4==4.82
+serpent==1.40

@@ -1,12 +1,14 @@
 from datetime import datetime
 from xml.etree import cElementTree as et
 from typing import List
+import Pyro4
 
 from model.xml_model import MOBmodel
 
-
 phonexml = []
 xml_file_name = "obj_data.xml"
+IP_Pyro4 = 'distributed.ddns.net'
+PORT_Pyro4 = 8002
 
 class MOBRepo:
     def create_obj(self, *,new_obj: MOBmodel) -> MOBmodel:
@@ -84,9 +86,50 @@ class MOBRepo:
                         return subelement.find('nombre').text
         return None
         
-    def replicate_xml(self, *, xml) -> str:
-        pass
+    def replicate_xml(self, *, xml=None) -> str:
+        ns = Pyro4.locateNS(IP_Pyro4,PORT_Pyro4)
+        uri = ns.lookup('coordinador')
+        conexion = Pyro4.Proxy(uri)
+        
+        file = open('obj_data.xml','r')
+        file_data = file.read(1024)
+        
+        resp = conexion.replicar_objetos(file_data)
+        response = {
+            'fecha_creacion': datetime.now(),
+            'nombre': "El proceso de replicacion a terminado satisfactoriamente",
+            'accion': resp          
+        }
+        if (resp == 'finished'):
+            response['nombre'] = "La replicacion del xml ha concluido satisfactoriamente"
+        elif(resp == 'abort'):
+            response['nombre'] = "Uno o ambos servidores rechazaron la replicacion"
+        else:
+            response['nombre'] = "Ocurrio un error en el proceso de replicacion"
+        return MOBmodel(**response)
     
     def restore_xml(self) -> str:
-        pass
+        ns = Pyro4.locateNS(IP_Pyro4,PORT_Pyro4)
+        uri = ns.lookup('coordinador')
+        conexion = Pyro4.Proxy(uri)
+        response = {}
+        file_data = conexion.restaurar_objetos()
+            
+        if(file_data ):
+            file = open('obj_data.xml','wb')
+            file.write(file_data.encode('utf-8'))
+            file.close()
+            response = {
+                'fecha_creacion': datetime.now(),
+                'nombre': "El proceso de replicacion a terminado satisfactoriamente",
+                'accion': 'finished'
+            }
+        else: 
+            response = {
+                'fecha_creacion': datetime.now(),
+                'nombre': "No se a encontrado el resplado o replica del xml",
+                'accion': 'error'
+            }
+        
+        return MOBmodel(**response)
     
