@@ -87,6 +87,7 @@ class MOBRepo:
         return None
         
     def replicate_xml(self, *, xml=None) -> str:
+        print("")
         ns = Pyro4.locateNS(IP_Pyro4,PORT_Pyro4)
         uri = ns.lookup('coordinador')
         conexion = Pyro4.Proxy(uri)

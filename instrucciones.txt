@@ -13,7 +13,7 @@
 		$pip install -r requeriments.txt (se actualizo con un par de librerias para Pyro)
   	
 	4. Ejecutar el entorno:
-		$uvicorn main:app --reload
+		$uvicorn main:app --reload --host="IP local de la pc "
   	
 	5.(En caso de que de error al iniciar el proyecto) tendran que instalar las dependencias de esta forma:
 		$pip install --upgrade pip
