@@ -5,7 +5,7 @@ import socket
 from os.path import exists
 
 # es la direccion usada para iniciar el servidor TCP
-IP = "192.168.1.100" #colocar IP_local o la IP publica de la PC
+IP = "192.168.0.136" #colocar IP_local o la IP publica de la PC
 server_num = int(input("Indique cual es este server (1 o 2):"))
 if(server_num == 1):
     PORT = 8002
